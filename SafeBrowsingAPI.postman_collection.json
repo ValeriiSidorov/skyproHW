@@ -1,0 +1,114 @@
+{
+	"info": {
+		"_postman_id": "326e8636-6be6-43fa-a00c-1735b1ccf13e",
+		"name": "SafeBrowsingAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28976196"
+	},
+	"item": [
+		{
+			"name": "Get lists",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/{{ver}}/threatLists?key={{token}}",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"{{ver}}",
+						"threatLists"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check Yandex",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"threatInfo\": {\r\n    \"threatTypes\": [\"MALWARE\"],\r\n    \"platformTypes\": [\"WINDOWS\"],\r\n    \"threatEntryTypes\": [\"URL\"],\r\n    \"threatEntries\": [\r\n      {\"url\": \"https://yandex.ru/\"}\r\n    ]\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/{{ver}}/threatMatches:find?key={{token}}",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"{{ver}}",
+						"threatMatches:find"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check Google",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"threatInfo\": {\r\n    \"threatTypes\": [\"UNWANTED_SOFTWARE\"],\r\n    \"platformTypes\": [\"LINUX\"],\r\n    \"threatEntryTypes\": [\"URL\"],\r\n    \"threatEntries\": [\r\n      {\"url\": \"https://google.com/\"}\r\n    ]\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/{{ver}}/threatMatches:find?key={{token}}",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"{{ver}}",
+						"threatMatches:find"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "https://sba.yandex.net"
+		},
+		{
+			"key": "ver",
+			"value": "v4"
+		},
+		{
+			"key": "token",
+			"value": "16309970-33c0-4a43-8945-add8a474358a"
+		}
+	]
+}
